@@ -2,10 +2,67 @@
 <!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
 "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 <module name="Checker">
-<module name="Header">
-    <property name="headerFile" value="checkstyle/HEADER"/>
-    <property name="charset" value="UTF-8"/>
+    <!-- controllo Header da file-->
+    <module name="Header">
+        <property name="headerFile" value="checkstyle/HEADER"/>
+        <property name="charset" value="UTF-8"/>
+    </module>
+
+    <!--Lunghezza massima file-->
+    <module name="FileLength">
+        <property name="max" value="1500"/>
+    </module>
+    <!--Lunghezza massima linee di codice-->
+     <module name="LineLength">
+        <property name="max" value="140"/>
+    </module>
+    <!--Controllo tab -->   
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
+    </module>
+
+    <!--Moduli figli di TreeWalker-->
+    <module name="TreeWalker" >
+        <!--Controllo complessita espressioni booleane-->
+        <module name="BooleanExpressionComplexity">
+            <property name="max" value="5"/>
+        </module>
+
+        <!--Controllo complessita cicli-->
+        <module name="CyclomaticComplexity">
+            <property name="max" value="10"/>
+            <property name="tokens" value="LITERAL_WHILE, LITERAL_DO"/>
+        </module>
+
+        <!-- Numero massimo di linee per metodo-->
+        <module name="MethodLength">
+            <property name="tokens" value="METHOD_DEF"/>
+            <property name="max" value="150"/>
+            <property name="countEmpty" value="false"/>
+        </module>
+
+        <!--Controllo per Catch vuoti -->
+        <module name="EmptyCatchBlock">
+            <property name="exceptionVariableName" value="expected|ignore"/>
+        </module>
+
+        <!--Impedire importazione di moduli con *-->
+        <module name="AvoidStarImport">
+            <property name="excludes" value="java.io,java.net,java.lang.Math"/>
+            <property name="allowStaticMemberImports" value="true"/>
+        </module>
+
+        <!--Blocco importi da alcuni pacchetti-->
+        <module name="IllegalImport">
+            <property name="illegalClasses" value="java.util.Date, java.sql.Connection"/>
+        </module>
+
+        <!--controllo parentesi dove necessario-->
+        <module name="NeedBraces">
+            <property name="tokens" value="LITERAL_IF, LITERAL_ELSE"/>
+            <property name="allowSingleLineStatement" value="true"/>
+        </module>
+        
+    </module>
 </module>
 
-
-</module>
