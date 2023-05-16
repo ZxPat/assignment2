@@ -15,7 +15,7 @@ jobs:
           java-version: '8.0.332+9'
           distribution: 'temurin'
           cache: 'maven'
-      - name: Test - Aggiornamento Coveralls - Build
+      - name: Test e build
         run: mvn  -B install --file pom.xml
       - name: Aggiornamento badge Coveralls 
         run: mvn -DrepoToken=${{ secrets.COVERALL_TOKEN }} clean test jacoco:report coveralls:report
