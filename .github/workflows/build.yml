@@ -1,4 +1,3 @@
-
 name: Processo di Build
 
 on: ["push", "pull_request"]
@@ -17,4 +16,6 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
       - name: Test - Aggiornamento Coveralls - Build
-        run: mvn -DrepoToken=${{ secrets.COVERALL_TOKEN }} -B install --file pom.xml
+        run: mvn  -B install --file pom.xml
+      - name: Aggiornamento badge Coveralls 
+        run: mvn -DrepoToken=${{ secrets.COVERALL_TOKEN }} clean test jacoco:report coveralls:report
